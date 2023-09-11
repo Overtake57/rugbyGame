@@ -11,9 +11,10 @@ let seconds = 0;
 function previewCards() {
   cards.forEach((card) => card.classList.add("flip"));
 
-  // Cachez les cartes après 3 secondes
+  // Cachez les cartes après 2 secondes et démarrez le chrono
   setTimeout(() => {
     cards.forEach((card) => card.classList.remove("flip"));
+    startTimer(); // Démarrer le chrono après la prévisualisation
   }, 2000);
 }
 
@@ -24,6 +25,9 @@ window.onload = () => {
 };
 
 function startTimer() {
+  if (timer) {
+    stopTimer(); // Si le timer est déjà en cours, l'arrêter
+  }
   timer = setInterval(function () {
     seconds++;
     document.getElementById("timer").textContent = `Temps écoulé : ${seconds}s`;
@@ -131,8 +135,8 @@ document.getElementById("resetButton").addEventListener("click", function () {
     card.addEventListener("click", flipCard);
   });
 
-  // Redémarrez le timer
-  startTimer();
+  // Prévisualisez les cartes avant de démarrer le jeu
+  previewCards();
 });
 
 shuffle();
