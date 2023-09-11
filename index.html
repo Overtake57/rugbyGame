@@ -1,85 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game</title>
-
     <link rel="stylesheet" href="/assets/style/style.css" />
   </head>
   <body>
-    <section class="memory-game">
-      <div class="memory-card" data-framework="aurelia">
+    <header>
+      <p id="moveCounter">Mouvements : 0</p>
+      <p id="timer">Temps écoulé : 0s</p>
+    </header>
+
+    <main id="gameContainer">
+      <section class="memory-game">
+      <!-- //! Carte Argentine -->
+      <div class="memory-card" data-framework="Argentina">
         <img
           class="front-face"
           src="/assets/img/rugbyCdm/losPumas.png"
           alt="Argentina"
         />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
-      <div class="memory-card" data-framework="aurelia">
+      <div class="memory-card" data-framework="Argentina">
         <img
           class="front-face"
           src="/assets/img/rugbyCdm/losPumas.png"
           alt="Argentina"
         />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
 
-      <div class="memory-card" data-framework="vue">
+      <!-- //! Carte Australie  -->
+
+      <div class="memory-card" data-framework="Australia">
         <img
           class="front-face"
-          src="/assets/img/rugbyCdm/australia.png"
-          alt="Vue"
+          src="/assets/img/rugbyCdm/wallabies.png"
+          alt="Australia"
         />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
-      <div class="memory-card" data-framework="vue">
+      <div class="memory-card" data-framework="Australia">
         <img
           class="front-face"
-          src="/assets/img/rugbyCdm/australia.png"
-          alt="Vue"
+          src="/assets/img/rugbyCdm/wallabies.png"
+          alt="Australia"
         />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
 
-      <div class="memory-card" data-framework="angular">
-        <img class="front-face" src="img/angular.svg" alt="Angular" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <!-- //! Carte Angleterre  -->
+
+      <div class="memory-card" data-framework="Angleterre">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/england.png"
+          alt="Angleterre"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
-      <div class="memory-card" data-framework="angular">
-        <img class="front-face" src="img/angular.svg" alt="Angular" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <div class="memory-card" data-framework="Angleterre">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/england.png"
+          alt="Angleterre"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
 
-      <div class="memory-card" data-framework="ember">
-        <img class="front-face" src="img/ember.svg" alt="Ember" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <!-- //! Carte France -->
+
+      <div class="memory-card" data-framework="France">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/french.png"
+          alt="France"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
-      <div class="memory-card" data-framework="ember">
-        <img class="front-face" src="img/ember.svg" alt="Ember" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <div class="memory-card" data-framework="France">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/french.png"
+          alt="France"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
 
-      <div class="memory-card" data-framework="backbone">
-        <img class="front-face" src="img/backbone.svg" alt="Backbone" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <!-- //! Carte Japon -->
+
+      <div class="memory-card" data-framework="Japon">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/japan.png"
+          alt="Japon"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
-      <div class="memory-card" data-framework="backbone">
-        <img class="front-face" src="img/backbone.svg" alt="Backbone" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <div class="memory-card" data-framework="Japon">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/japan.png"
+          alt="Japon"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
 
-      <div class="memory-card" data-framework="react">
-        <img class="front-face" src="img/react.svg" alt="React" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <!-- //! Carte Georgie -->
+
+      <div class="memory-card" data-framework="Georgie">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/georgia.png"
+          alt="Georgie"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
-      <div class="memory-card" data-framework="react">
-        <img class="front-face" src="img/react.svg" alt="React" />
-        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+      <div class="memory-card" data-framework="Georgie">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/georgia.png"
+          alt="Georgie"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
       </div>
+
+      <!-- //! Carte Russie -->
+
+      <div class="memory-card" data-framework="Russie">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/russia.png"
+          alt="Russie"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
+      </div>
+      <div class="memory-card" data-framework="Russie">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/russia.png"
+          alt="Russie"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
+      </div>
+
+      <!-- //! Carte Espagne -->
+
+      <div class="memory-card" data-framework="Espagne">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/spain.png"
+          alt="Espagne"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
+      </div>
+      <div class="memory-card" data-framework="Espagne">
+        <img
+          class="front-face"
+          src="/assets/img/rugbyCdm/spain.png"
+          alt="Espagne"
+        />
+        <img
+          class="back-face"
+          src="/assets/img/rugbyCdm/backgroundCard.png"
+          alt="Rugby badge"
+        />
+      </div>
+    </div>
     </section>
+    <aside id="congratsModal" style="display: none">
+      <h2 id="congratsMessage">
+        Félicitations ! Vous avez gagné !
+      </h2>
+      <p id="finalMoveCounter">Mouvements : 0</p>
+      <p id="finalTimer">Temps écoulé : 0s</p>
+      <button id="resetButton">Rejouer</button>
+    </aside>
+  </main>
 
-    <script src="/assets/script/script.js"></script>
-  </body>
+  <script src="/assets/script/script.js"></script>
+</body>
 </html>
