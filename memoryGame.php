@@ -3,14 +3,14 @@
 // Définition du tableau associatif contenant les noms des équipes et leurs logos respectifs
 $equipes = array(
     "Canada" => "/assets/img/rugbyCdm/canada.png",
-    "Chilie" => "/assets/img/rugbyCdm/chile.png",
+    "Chili" => "/assets/img/rugbyCdm/chile.png",
     "Angleterre" => "/assets/img/rugbyCdm/england.png",
-    "Fijans" => "/assets/img/rugbyCdm/fijans.png",
+    "Fidji" => "/assets/img/rugbyCdm/fijans.png",
     "France" => "/assets/img/rugbyCdm/french.png",
     "Georgie" => "/assets/img/rugbyCdm/georgia.png",
-    "Ireland" => "/assets/img/rugbyCdm/irish.png",
+    "Irlande" => "/assets/img/rugbyCdm/irish.png",
     "Italie" => "/assets/img/rugbyCdm/italie.png",
-    "Ivoir" => "/assets/img/rugbyCdm/ivory.png",
+    "Côte d'Ivoire" => "/assets/img/rugbyCdm/ivory.png",
     "Japon" => "/assets/img/rugbyCdm/japan.png",
     "Lakapi" => "/assets/img/rugbyCdm/lakapi.png",
     "Argentine" => "/assets/img/rugbyCdm/losPumas.png",
@@ -77,6 +77,14 @@ function shuffle_assoc(&$array)
     </header>
 
     <main id="gameContainer">
+            <!-- Modale de sélection de la difficulté -->
+    <div id="difficultyModal" class="modal">
+        <h2>Choisissez votre difficulté</h2>
+        <button class="difficulty" data-difficulty="easy">Facile</button>
+        <button class="difficulty" data-difficulty="medium">Moyen</button>
+        <button class="difficulty" data-difficulty="hard">Difficile</button>
+        <button class="difficulty" data-difficulty="impossible">Impossible</button>
+    </div>
     <section class="memory-game">
 
     <!-- Boucle pour afficher chaque carte de mémoire -->
