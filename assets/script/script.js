@@ -1,32 +1,32 @@
 // ----- Variables globales -----
 
 const equipes = {
-  canada: "../img/rugbyCdm/canada.png",
-  chili: "../img/rugbyCdm/chile.png",
-  angleterre: "../img/rugbyCdm/england.png",
-  fidji: "../img/rugbyCdm/fijans.png",
-  france: "../img/rugbyCdm/french.png",
-  georgie: "../img/rugbyCdm/georgia.png",
-  irlande: "../img/rugbyCdm/irish.png",
-  italie: "../img/rugbyCdm/italie.png",
-  coteIvoire: "../img/rugbyCdm/ivory.png",
-  japon: "../img/rugbyCdm/japan.png",
-  lakapi: "../img/rugbyCdm/lakapi.png",
-  argentine: "../img/rugbyCdm/losPumas.png",
-  namibia: "../img/rugbyCdm/namibia.png",
-  nouvelleZelande: "../img/rugbyCdm/newZealand.png",
-  portugal: "../img/rugbyCdm/portuguese.png",
-  roumanie: "../img/rugbyCdm/romania.png",
-  russie: "../img/rugbyCdm/russia.png",
-  ecosse: "../img/rugbyCdm/scottish.png",
-  espagne: "../img/rugbyCdm/spain.png",
-  springbok: "../img/rugbyCdm/springbok.png",
-  tonga: "../img/rugbyCdm/tonga.png",
-  uruguay: "../img/rugbyCdm/uruguay.png",
-  usa: "../img/rugbyCdm/usa.png",
-  wales: "../img/rugbyCdm/wales.png",
-  australie: "../img/rugbyCdm/wallabies.png",
-  zimbabwe: ".../img/rugbyCdm/zimbabwe.png",
+  canada: "assets/img/rugbyCdm/canada.png",
+  chili: "assets/img/rugbyCdm/chile.png",
+  angleterre: "assets/img/rugbyCdm/england.png",
+  fidji: "assets/img/rugbyCdm/fijans.png",
+  france: "assets/img/rugbyCdm/french.png",
+  georgie: "assets/img/rugbyCdm/georgia.png",
+  irlande: "assets/img/rugbyCdm/irish.png",
+  italie: "assets/img/rugbyCdm/italie.png",
+  coteIvoire: "assets/img/rugbyCdm/ivory.png",
+  japon: "assets/img/rugbyCdm/japan.png",
+  lakapi: "assets/img/rugbyCdm/lakapi.png",
+  argentine: "assets/img/rugbyCdm/losPumas.png",
+  namibia: "assets/img/rugbyCdm/namibia.png",
+  nouvelleZelande: "assets/img/rugbyCdm/newZealand.png",
+  portugal: "assets/img/rugbyCdm/portuguese.png",
+  roumanie: "assets/img/rugbyCdm/romania.png",
+  russie: "assets/img/rugbyCdm/russia.png",
+  ecosse: "assets/img/rugbyCdm/scottish.png",
+  espagne: "assets/img/rugbyCdm/spain.png",
+  springbok: "assets/img/rugbyCdm/springbok.png",
+  tonga: "assets/img/rugbyCdm/tonga.png",
+  uruguay: "assets/img/rugbyCdm/uruguay.png",
+  usa: "assets/img/rugbyCdm/usa.png",
+  wales: "assets/img/rugbyCdm/wales.png",
+  australie: "assets/img/rugbyCdm/wallabies.png",
+  zimbabwe: "assets/img/rugbyCdm/zimbabwe.png",
 };
 
 let cards = document.querySelectorAll(".memory-card");
@@ -121,7 +121,7 @@ function generateCards(difficulty) {
 
     const backFace = document.createElement("img");
     backFace.className = "back-face";
-    backFace.src = "../img/rugbyCdm/backgroundCard.png";
+    backFace.src = "assets/img/rugbyCdm/backgroundCard.png";
 
     card.appendChild(frontFace);
     card.appendChild(backFace);
