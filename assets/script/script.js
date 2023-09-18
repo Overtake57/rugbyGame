@@ -29,6 +29,10 @@ const equipes = {
   zimbabwe: "assets/img/rugbyCdm/zimbabwe.png",
 };
 
+const piege = {
+  piege: "assets/img/rugbyCdm/piege.png",
+};
+
 let cards = document.querySelectorAll(".memory-card");
 let gameLogos = {};
 
@@ -39,7 +43,7 @@ function previewCards(difficulty) {
     easy: 2000,
     medium: 1500,
     hard: 1000,
-    impossible: 300,
+    impossible: 100,
   };
 
   const previewDuration = previewTimes[difficulty];
@@ -92,12 +96,22 @@ function generateGameLogos(difficulty) {
       numTeams = 10;
       break;
     case "impossible":
-      numTeams = 10;
+      numTeams = 11;
       break;
   }
 
   const selectedTeamsKeys = getRandomKeys(equipes, numTeams);
   gameLogos = {};
+
+  if (difficulty === "impossible") {
+    // Retire deux équipes aléatoires pour faire de la place pour la carte piège
+    selectedTeamsKeys.pop();
+    selectedTeamsKeys.pop();
+
+    // Ajoute la carte piège pour le niveau impossible
+    gameLogos["piege_1"] = piege.piege;
+  }
+
   selectedTeamsKeys.forEach((key) => {
     gameLogos[key] = equipes[key];
   });
@@ -108,6 +122,7 @@ function generateGameLogos(difficulty) {
 
 function generateCards(difficulty) {
   const cardsContainer = document.getElementById("cardsContainer");
+  cards = document.querySelectorAll(".memory-card");
   cardsContainer.innerHTML = ""; // Réinitialise le conteneur des cartes seulement
 
   Object.entries(gameLogos).forEach(([team, logo]) => {
@@ -193,13 +208,15 @@ function flipCard() {
 }
 
 function checkForMatch() {
+  // Si les deux cartes sont des cartes piège, le joueur perd
   if (
-    firstCard.classList.contains("death-card") ||
-    secondCard.classList.contains("death-card")
+    firstCard.dataset.framework.includes("piege") &&
+    secondCard.dataset.framework.includes("piege")
   ) {
     endGame();
     return;
   }
+
   // Ignore les suffixes _1 et _2 lors de la comparaison
   let firstCardKey = firstCard.dataset.framework.replace(/(_1|_2)$/, "");
   let secondCardKey = secondCard.dataset.framework.replace(/(_1|_2)$/, "");
@@ -241,8 +258,20 @@ function startGame(difficulty) {
 
 function endGame() {
   clearInterval(timer);
-  alert("Vous avez cliqué sur la carte de la mort. Vous avez perdu !");
-  resetGame();
+
+  // Retourner toutes les cartes
+  const allCards = document.querySelectorAll(".card");
+  allCards.forEach((card) => {
+    if (!card.classList.contains("flipped")) {
+      card.classList.add("flipped");
+    }
+  });
+
+  // Attendre 2 secondes avant d'afficher l'alerte
+  setTimeout(() => {
+    alert("Vous avez cliqué sur la carte de la mort. Vous avez perdu !");
+    resetGame();
+  }, 100);
 }
 
 function resetGame() {
@@ -252,9 +281,13 @@ function resetGame() {
   moveCount = 0;
   matchedCount = 0;
   seconds = 0;
+  if (timer) {
+    clearInterval(timer);
+  }
+  let defaultDifficulty = "easy"; // ou une autre valeur de difficulté par défaut
   updateMoveCounter();
   updateTimer();
-  generateCards();
+  resetBoard();
   cards.forEach((card) => {
     card.classList.remove("flip");
     card.classList.remove("matched");
@@ -276,7 +309,7 @@ function hideModals() {
   // document.getElementById("modalBackdrop").style.display = "none";
   document.getElementById("congratsModal").style.display = "none";
   document.getElementById("difficultyModal").style.display = "none";
-  lockBoard = false;
+  // lockBoard = false;
 }
 
 function showCongratsModal() {
