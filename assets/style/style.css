@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 /* --- Réinitialisation de base --- */
 * {
   padding: 0;
@@ -9,11 +9,35 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: #0f172a;
   color: #fff;
+  background: url('/assets/img/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* --- Structure générale --- */
+
+h1, h2 {
+  font-family: 'Press Start 2P', sans-serif;
+  text-shadow: 3px 3px #000;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  color: #FFD700; 
+  background-color: rgba(0, 0, 0, 0.6); 
+  padding: 5px 10px;
+  border: 2px solid #FFD700; 
+  box-shadow: 2px 2px 0px #000; 
+  margin: 10px 0; 
+  border-radius: 5px; 
+  max-width: 90%; 
+  text-align: center; 
+}
+
+
 header,
 main {
   max-width: 800px;
@@ -37,29 +61,82 @@ header {
   filter: blur(3px);
 }
 
+.difficulty, #congratsModal, #difficultyModal {
+  background-image: repeating-linear-gradient(horizontal, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px,transparent 2px, transparent 4px);
+}
+
+
 /* --- Modals et Backdrop --- */
 .difficulty {
-  display: inline-block;
-  padding: 5px 10px;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 0.8em;
+  padding: 8px 16px;
+  border: 3px solid #000;
   background-color: #FF3000;
-  color: #ffffff;
-  border-radius: 20px;
-  transition: all 0.3s;
-  text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  font-size: 1em;
-  border: none;
+  color: #fff;
+  text-transform: uppercase;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, background-color 0.3s;
+  box-shadow: 3px 3px #000;
+}
+
+.difficulty::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: width 0.25s;
+}
+
+#resetButton {
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 0.8em;
+  padding: 8px 16px;
+  border: 3
 }
 
 /* Effet de survol */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
 .difficulty:hover {
-  background-color: #FD01C4;
+  background-color: #fff;
+  color: #FF3000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: blink 0.5s infinite;
+}
+
+.difficulty:hover::before {
+  width: 100%;
+}
+
+/* Couleurs spécifiques par niveau de difficulté */
+.difficulty[data-difficulty="easy"] {
+  background-color: #4CAF50; /* Vert */
+}
+
+.difficulty[data-difficulty="medium"] {
+  background-color: #FFEB3B; /* Jaune */
+}
+
+.difficulty[data-difficulty="hard"] {
+  background-color: #FF5722; /* Orange */
+}
+
+.difficulty[data-difficulty="impossible"] {
+  background-color: #E91E63; /* Rose */
 }
 
 /* Effet actif */
-.difficulty:active {
+.difficulty, #resetButton:active {
   transform: scale(0.98);
 }
 
@@ -77,8 +154,7 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #0f172a;
-  border: 2px solid #000;
+  background-color: #181717;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -118,7 +194,9 @@ header {
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 3px solid #FFD700; 
+  background: #000;
+  box-shadow: 5px 5px #000; 
 }
 
 .memory-card:active {
@@ -128,10 +206,10 @@ header {
 
 .memory-card.flip {
   transform: rotateY(180deg);
+  background: #FFD700
 }
 
-.front-face,
-.back-face {
+.front-face, .back-face {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -139,34 +217,21 @@ header {
   background: #ffffff;
   backface-visibility: hidden;
   object-fit: contain;
+  background-image: repeating-linear-gradient(horizontal, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px,transparent 1px, transparent 2px);
 }
 
 .front-face {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 /* --- Animations --- */
-@keyframes bounce {
 
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-
-  40% {
-    transform: translateY(-10px);
-  }
-
-  60% {
-    transform: translateY(-5px);
-  }
+@keyframes pixelBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
-
 .memory-card.matched {
-  animation: bounce 1s;
+  animation: pixelBounce 0.5s;
 }
 
 /* Pour des écrans un peu plus grands, comme les phablettes */
@@ -205,8 +270,3 @@ header {
     height: 150px;
   }
 }
-
-/* --- Cartes spécifiques --- */
-/* .death-card .front-face {
-  background: red url("/assets/img/rugbyCdm/deathcard.png") no-repeat center/contain;
-} */
