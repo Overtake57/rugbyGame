@@ -223,6 +223,9 @@ function checkForMatch() {
 
   let isMatch = firstCardKey === secondCardKey;
   isMatch ? disableCards() : unflipCards();
+  if (difficulty === "impossible" && matchedCount === 18) {
+    showCongratsModal();
+  }
 }
 
 function unflipCards() {
