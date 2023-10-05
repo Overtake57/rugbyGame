@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* --- Réinitialisation de base --- */
 * {
   padding: 0;
@@ -17,8 +18,7 @@ body {
 }
 
 /* --- Structure générale --- */
-
-h1, h2 {
+h1, h2, .difficulty {
   font-family: 'Press Start 2P', sans-serif;
   text-shadow: 3px 3px #000;
 }
@@ -26,20 +26,18 @@ h1, h2 {
 p {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
-  color: #FFD700; 
-  background-color: rgba(0, 0, 0, 0.6); 
+  color: #FFD700;
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
-  border: 2px solid #FFD700; 
-  box-shadow: 2px 2px 0px #000; 
-  margin: 10px 0; 
-  border-radius: 5px; 
-  max-width: 90%; 
-  text-align: center; 
+  border: 2px solid #FFD700;
+  box-shadow: 2px 2px 0px #000;
+  margin: 10px 0;
+  border-radius: 5px;
+  max-width: 90%;
+  text-align: center;
 }
 
-
-header,
-main {
+header, main {
   max-width: 800px;
   margin: 20px auto;
   padding: 0 20px;
@@ -54,21 +52,18 @@ header {
 #gameContainer {
   position: relative;
   width: 100%;
-}
 
-#gameContainer.modal-active>*:not(aside) {
-  pointer-events: none;
-  filter: blur(3px);
+  &.modal-active > *:not(aside) {
+    pointer-events: none;
+    filter: blur(3px);
+  }
 }
 
 .difficulty, #congratsModal, #difficultyModal {
   background-image: repeating-linear-gradient(horizontal, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px,transparent 2px, transparent 4px);
 }
 
-
-/* --- Modals et Backdrop --- */
 .difficulty {
-  font-family: 'Press Start 2P', sans-serif;
   font-size: 0.8em;
   padding: 8px 16px;
   border: 3px solid #000;
@@ -80,76 +75,56 @@ header {
   overflow: hidden;
   transition: color 0.3s, background-color 0.3s;
   box-shadow: 3px 3px #000;
-}
 
-.difficulty::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: width 0.25s;
-}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: width 0.25s;
+  }
 
-#resetButton {
-  font-family: 'Press Start 2P', sans-serif;
-  font-size: 0.8em;
-  padding: 8px 16px;
-  border: 3
-}
+  &:hover {
+    background-color: #fff;
+    color: #FF3000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: blink 0.5s infinite;
 
-/* Effet de survol */
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &.active {
+    transform: scale(0.98);
+  }
+
+  &[data-difficulty="easy"] {
+    background-color: #4CAF50;
+  }
+
+  &[data-difficulty="medium"] {
+    background-color: #FFEB3B;
+  }
+
+  &[data-difficulty="hard"] {
+    background-color: #FF5722;
+  }
+
+  &[data-difficulty="impossible"] {
+    background-color: #E91E63;
+  }
+}
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
 
-.difficulty:hover {
-  background-color: #fff;
-  color: #FF3000;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  animation: blink 0.5s infinite;
-}
-
-.difficulty:hover::before {
-  width: 100%;
-}
-
-/* Couleurs spécifiques par niveau de difficulté */
-.difficulty[data-difficulty="easy"] {
-  background-color: #4CAF50; /* Vert */
-}
-
-.difficulty[data-difficulty="medium"] {
-  background-color: #FFEB3B; /* Jaune */
-}
-
-.difficulty[data-difficulty="hard"] {
-  background-color: #FF5722; /* Orange */
-}
-
-.difficulty[data-difficulty="impossible"] {
-  background-color: #E91E63; /* Rose */
-}
-
-/* Effet actif */
-.difficulty, #resetButton:active {
-  transform: scale(0.98);
-}
-
-#congratsModal {
-  display: none;
-}
-
-#gameContainer.modal-active {
-  pointer-events: none;
-}
-
-#congratsModal,
-#difficultyModal {
+#congratsModal, #difficultyModal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -175,8 +150,6 @@ header {
   display: none;
 }
 
-
-/* --- Jeu de mémoire --- */
 .memory-game {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -184,6 +157,21 @@ header {
   width: 100%;
   max-width: 320px;
   margin: 20px auto;
+
+  @media (min-width: 500px) {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 480px;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 640px;
+  }
+
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 960px;
+  }
 }
 
 .memory-card {
@@ -194,77 +182,53 @@ header {
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  border: 3px solid #FFD700; 
+  border: 3px solid #FFD700;
   background: #000;
-  box-shadow: 5px 5px #000; 
-}
+  box-shadow: 5px 5px #000;
 
-.memory-card:active {
-  transform: scale(0.97);
-  transition: transform 0.2s;
-}
-
-.memory-card.flip {
-  transform: rotateY(180deg);
-  background: #FFD700
-}
-
-.front-face, .back-face {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 5px;
-  background: #ffffff;
-  backface-visibility: hidden;
-  object-fit: contain;
-  background-image: repeating-linear-gradient(horizontal, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px,transparent 1px, transparent 2px);
-}
-
-.front-face {
+  &.flip {
     transform: rotateY(180deg);
-}
+    background: #FFD700;
+  }
 
-/* --- Animations --- */
+  &.active {
+    transform: scale(0.97);
+    transition: transform 0.2s;
+  }
+
+  &.matched {
+    animation: pixelBounce 0.5s;
+  }
+
+  .front-face, .back-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    background: #ffffff;
+    backface-visibility: hidden;
+    object-fit: contain;
+    background-image: repeating-linear-gradient(horizontal, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px,transparent 1px, transparent 2px);
+  }
+
+  .front-face {
+    transform: rotateY(180deg);
+  }
+}
 
 @keyframes pixelBounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
-.memory-card.matched {
-  animation: pixelBounce 0.5s;
-}
 
-/* Pour des écrans un peu plus grands, comme les phablettes */
-@media (min-width: 500px) {
-  .memory-game {
-    grid-template-columns: repeat(4, 1fr);
-    /* 4 cartes par rangée */
-    max-width: 480px;
-  }
-}
-
-/* Pour des tablettes */
 @media (min-width: 768px) {
-  .memory-game {
-    grid-template-columns: repeat(4, 1fr);
-    /* 4 cartes par rangée */
-    max-width: 640px;
-  }
-
   .memory-card {
     width: 130px;
     height: 150px;
   }
 }
 
-/* Pour les grands écrans */
 @media (min-width: 992px) {
-  .memory-game {
-    grid-template-columns: repeat(4, 1fr);
-    /* 4 cartes par rangée pour les grands écrans */
-    max-width: 960px;
-  }
-
   .memory-card {
     width: 130px;
     height: 150px;
